@@ -13,4 +13,12 @@ public final class PrintArray {
         }
         System.out.println("]");
     }
+    public static void printfArray(double[] b){
+
+        System.out.print("[");
+        for (int i = 1; i < b.length ; i++ ){
+            System.out.print(b[i]+"  ");
+        }
+        System.out.println("]");
+    }
 }
