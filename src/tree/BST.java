@@ -51,15 +51,19 @@ public class BST {
      * @return 已经插入值的树
      */
     public node insert_recur(node root,int key,node parent){
-        //该数为空，则新建一个
+        //该树为空，则新建一个
         if (root == null)
             return new node(key,parent);
         if (root.getKey() > key){
             root.setLeft(insert_recur(root.getLeft(),key,root));
         }else {
-            root.setRight(insert_recur(root.getRight(),key,root));
+            root.setRight(insert_recur(root.getRight(), key, root));
         }
         return root;
+    }
+
+    public node insert_recur(node root,int key){
+        return insert_recur(root,key,null);
     }
 
     /**
@@ -72,7 +76,6 @@ public class BST {
 
         if (root == null)
             return new node(key,null);
-
         node p = root;
         node parent = null;
 
@@ -274,7 +277,7 @@ public class BST {
     public node erase(node root,int key){
         if (root == null)
             return null;
-        node p = check_recur(root,key);
+        node p = check_recur(root, key);
         //待删除节点是叶子节点
         if (p.getRight() == null && p.getLeft() == null){
             node parent = p.getParent();
@@ -347,7 +350,53 @@ public class BST {
         return root;
     }
 
+    public static void main(String[] args){
+        BST bst = new BST();
+        node root = bst.insert_recur(null,26);
+        //插入
+        root = bst.insert_unrecur(root,33);
+        root = bst.insert_unrecur(root,68);
+        root = bst.insert_unrecur(root,42);
+        root = bst.insert_unrecur(root,51);
+        root = bst.insert_recur(root,5);
+        root = bst.insert_recur(root,9);
+        root = bst.insert_recur(root,19);
+        root = bst.insert_recur(root,29);
+        root = bst.insert_recur(root,13);
+        bst.inOrder_recur(root);
+        System.out.println("\n"+"------------------------------");
+        //查询
+        node check = bst.check_recur(root,13);
+        System.out.println(check.getKey());
+        check = bst.check_unrecur(root,51);
+        System.out.println(check.getKey());
+        System.out.println("\n"+"------------------------------");
+        //输出最大最小值
+        System.out.println(bst.max_node_recur(root).getKey());
+        System.out.println(bst.max_node_unrecur(root).getKey());
+        System.out.println(bst.min_node_recur(root).getKey());
+        System.out.println(bst.min_node_unrecur(root).getKey());
+        System.out.println("\n"+"------------------------------");
+        //输出前驱，后缀
+        System.out.println(bst.preNode(root, 13).getKey());
+        System.out.println(bst.postNode(root, 13).getKey());
+        System.out.println("\n" + "------------------------------");
+        //删除
+        bst.inOrder_recur(root);
+        System.out.println("\n");
 
+        root = bst.erase(root,29);
+        bst.inOrder_recur(root);
+        System.out.println("\n");
+
+        root = bst.erase(root,42);
+        bst.inOrder_recur(root);
+        System.out.println("\n");
+
+        root = bst.erase(root,9);
+        bst.inOrder_recur(root);
+        System.out.println("\n");
+    }
 
 }
 
