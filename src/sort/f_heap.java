@@ -52,7 +52,11 @@ public final class f_heap {
         }
     }
 
-    //以a[i]为根建立最大堆（非递归版），这是由上向下调整
+    /**
+     * 以a[i]为根建立最大堆（非递归版），这是由上向下调整
+     * @param a 要建立堆的数组
+     * @param i 从哪里开始建立堆
+     */
     public static void max_heapify(int[] a,int i){
         boolean flag = false;   //标记是否已经建好堆
         int max=0;  //用于标记最大的下标
@@ -77,7 +81,32 @@ public final class f_heap {
             }
         }
     }
+    /**
+     * 以a[i]为根建立最小堆（非递归版），这是由上向下调整
+     * @param a 要建立堆的数组
+     * @param i 从哪里开始建立堆
+     */
+    public static void min_heapify(int[] a,int i){
+        boolean flag = false;   //标记是否已经建好堆
+        int min = i;    //标记最小的下标
+        while (i*2 < heapSize && flag == true){
 
+            if (a[i] > a[2*i]){
+                min = 2*i;
+            }
+            if (2*i+1 < heapSize){
+                if (a[min] > a[2*i+1]){
+                    min = 2*i+1;
+                }
+            }
+            if (min != i){
+                Swap.SwapTwoitem(a,min,i);
+                i = min;
+            }else {
+                flag = true;
+            }
+        }
+    }
     public static void siftup(int[] a,int i){
         boolean flag = false;   //标记是否已经建好堆
         if (i == 1)
@@ -101,6 +130,17 @@ public final class f_heap {
             max_heapify(a,i);
         }
     }
+
+    //建最小堆
+    public static void build_min_heap(int[] a){
+        heapSize = a.length-1;
+        //叶子节点不管，直接从倒数第二层开始构建最大堆
+        for (int i= heapSize/2; i >= 1; i--){
+//            recursive_max_heapify(a, i);
+            min_heapify(a,i);
+        }
+    }
+
 
     public static void main(String[] args){
         int[] a = {0,5,2,6,9,7,1,3,4,8};
