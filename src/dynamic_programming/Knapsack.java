@@ -4,13 +4,13 @@ package dynamic_programming;
  * 01背包问题
  * Created by zhaoshiqiang on 2016/12/20.
  */
-public class Knapsack_01 {
+public class Knapsack {
     private int maxWeight;
     private Stuff[] stuffs;
     private Record[][] record;
     private Record[] recordII;
 
-    public Knapsack_01(int maxWeight, Stuff[] stuffs) {
+    public Knapsack(int maxWeight, Stuff[] stuffs) {
         this.maxWeight = maxWeight;
         this.stuffs = stuffs;
         int n = stuffs.length+1;    // 这里是从0到stuffs.length,所以要加1
@@ -27,6 +27,14 @@ public class Knapsack_01 {
             recordII[i]=new Record(0);
         }
     }
+    //01背包构造函数
+    public static Knapsack Knapsack_01(int maxWeight,Stuff[] stuffs){
+        return new Knapsack(maxWeight,stuffs);
+    }
+    //多重背包构造函数
+    public static Knapsack Knapsack_Complete(int maxWeight, Stuff[] stuffs){
+        return new Knapsack(maxWeight,stuffs);
+    }
 
     public int getMaxWeight() {
         return maxWeight;
@@ -41,11 +49,11 @@ public class Knapsack_01 {
     }
 
     //这个的空间复杂度是O(nm)
-    public void solve(){
+    public void knapsack01_solve(){
         for (int i=1; i<stuffs.length; i++){
             int stuffweight = stuffs[i].getWeight();
             System.out.print("第" + i + "行： ");
-            for (int j=1; j<=maxWeight; j++){
+            for (int j=0; j<=maxWeight; j++){
                 if ( j - stuffweight >=0 ){
                     if (record[i-1][j].getValue() < record[i-1][j-stuffweight].getValue()+stuffs[i].getValue()){
                         record[i][j].setValue(record[i - 1][j - stuffweight].getValue() + stuffs[i].getValue());
@@ -68,7 +76,7 @@ public class Knapsack_01 {
         }
     }
     //这个空间复杂度为O(m)
-    public void solveII(){
+    public void knapsack01_solveii(){
         for (int i=1; i<stuffs.length; i++){
             int stuffweight = stuffs[i].getWeight();
             System.out.print("第" + i + "行： ");
@@ -96,17 +104,55 @@ public class Knapsack_01 {
             System.out.print("\n");
         }
     }
+
+    public void CompleteKnapsack_solve(){
+        for (int i=1; i<stuffs.length;i++){
+            int stuffweight = stuffs[i].getWeight();
+            System.out.print("第" + i + "行： ");
+            for (int j=0; j<=maxWeight;j++){
+                if (j-stuffweight >= 0){
+                    if (recordII[j].getValue() < recordII[j-stuffweight].getValue()+stuffs[i].getValue()){
+                        recordII[j].setValue(recordII[j-stuffweight].getValue()+stuffs[i].getValue());
+                        recordII[j].setX_parent(i);
+                        recordII[j].setY_parent(j - stuffweight);
+                    }else {
+                        recordII[j].setX_parent(i-1);
+                        recordII[j].setY_parent(j);
+                    }
+                }else {
+                    recordII[j].setX_parent(i-1);
+                    recordII[j].setY_parent(j);
+                }
+                System.out.print(recordII[j].getValue() +
+                        "("+recordII[j].getX_parent()+","+recordII[j].getY_parent()+")    ");
+            }
+            System.out.print("\n");
+        }
+    }
     public static void main(String args[]) {
-        Stuff stuffs[] = {
+        Stuff stuffs_01[] = {
                 new Stuff(0,0),
                 new Stuff(2, 3),
                 new Stuff(1, 2),
                 new Stuff(3, 4),
                 new Stuff(2, 2)
         };
-        Knapsack_01 knapsack = new Knapsack_01(5,stuffs);
-        knapsack.solve();
-//        knapsack.solveII();
+        Knapsack knapsack01 = Knapsack.Knapsack_01(5, stuffs_01);
+        knapsack01.knapsack01_solve();
+        System.out.println("--------------------------------------------------------------------------------------");
+        knapsack01.knapsack01_solveii();
+        System.out.println("--------------------------------------------------------------------------------------");
+        Stuff stuff_complete[]={
+                new Stuff(0,0),
+                new Stuff(3,6),
+                new Stuff(6,15),
+                new Stuff(5,10),
+                new Stuff(1,2),
+                new Stuff(6,16),
+                new Stuff(4,8)
+        };
+        Knapsack knapsack_complete = Knapsack_Complete(10, stuff_complete);
+        knapsack_complete.CompleteKnapsack_solve();
     }
 }
 
