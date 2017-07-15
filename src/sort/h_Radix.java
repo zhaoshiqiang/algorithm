@@ -3,30 +3,29 @@ package sort;
 import util.PrintArray;
 
 /**
- * »ùÊýÅÅÐò
- * ¼ÆÊýÅÅÐòµÄÒ»¸öÖØÒªÐÔÖÊ¾ÍÊÇËüÊÇÎÈ¶¨µÄ£º
- * ¾ßÓÐÏàÍ¬ÖµµÄÔªËØÔÚÊä³öÊý×éÖÐµÄÏà¶Ô´ÎÐòÓëËüÃÇÔÚÊäÈëÊý×éÖÐµÄ´ÎÐòÏàÍ¬¡£
- * ¼´ÔÚÊäÈëÊý×éÖÐÏÈ³öÏÖµÄ£¬ÔÚÊä³öÊý×éÖÐÒ²Î»ÓÚÇ°Ãæ¡£
- * Ö®ËùÒÔËµ¼ÆÊýÅÅÐòµÄÎÈ¶¨ÐÔ·Ç³£ÖØÒª£¬ÊÇÒòÎª¼ÆÊýÅÅÐò¾­³£ÓÃ×÷»ùÊýÅÅÐòËã·¨µÄÒ»¸ö×Ó¹ý³Ì¡£
- * ¼ÆÊýÅÅÐòµÄÎÈ¶¨ÐÔ¶Ô»ùÊýÅÅÐòµÄÕýÈ·ÐÔÀ´Ëµ£¬ÊÇ·Ç³£¹Ø¼üµÄ¡£
- * Created by zhaoshiqiang on 2016/12/12.
+ * åŸºæ•°æŽ’åº
+ * è®¡æ•°æŽ’åºçš„ä¸€ä¸ªé‡è¦æ€§è´¨å°±æ˜¯å®ƒæ˜¯ç¨³å®šçš„ï¼š
+ * å…·æœ‰ç›¸åŒå€¼çš„å…ƒç´ åœ¨è¾“å‡ºæ•°ç»„ä¸­çš„ç›¸å¯¹æ¬¡åºä¸Žå®ƒä»¬åœ¨è¾“å…¥æ•°ç»„ä¸­çš„æ¬¡åºç›¸åŒã€‚
+ * å³åœ¨è¾“å…¥æ•°ç»„ä¸­å…ˆå‡ºçŽ°çš„ï¼Œåœ¨è¾“å‡ºæ•°ç»„ä¸­ä¹Ÿä½äºŽå‰é¢ã€‚
+ * ä¹‹æ‰€ä»¥è¯´è®¡æ•°æŽ’åºçš„ç¨³å®šæ€§éžå¸¸é‡è¦ï¼Œæ˜¯å› ä¸ºè®¡æ•°æŽ’åºç»å¸¸ç”¨ä½œåŸºæ•°æŽ’åºç®—æ³•çš„ä¸€ä¸ªå­è¿‡ç¨‹ã€‚
+ * è®¡æ•°æŽ’åºçš„ç¨³å®šæ€§å¯¹åŸºæ•°æŽ’åºçš„æ­£ç¡®æ€§æ¥è¯´ï¼Œæ˜¯éžå¸¸å…³é”®çš„ã€‚
+ * Created by zhaoshiqiang on 2017/7/15.
  */
 public class h_Radix {
-
-    //dÎªÊý×éÖÐ×î´óÎ»Êý
+    //dä¸ºæ•°ç»„ä¸­æœ€å¤§ä½æ•°
     public static int[] radix_sort(int[] a,int d){
         for (int i=0; i<d; i++){
-            //ÒÀÕÕµÚiÎ»Êý¾Ý¶Ôa½øÐÐÅÅÐò
+            //ä¾ç…§ç¬¬iä½æ•°æ®å¯¹aè¿›è¡ŒæŽ’åº
             a=countsorting(a,i);
 //            PrintArray.printfArray(a);
         }
         return a;
     }
-    //ÀûÓÃ¼ÆÊýÅÅÐòºÍdataÖÐ¶ÔÓ¦Î»¶Ôdata½øÐÐÅÅÐò
+    //åˆ©ç”¨è®¡æ•°æŽ’åºå’Œdataä¸­å¯¹åº”ä½å¯¹dataè¿›è¡ŒæŽ’åº
     private static int[] countsorting(int[] data,int expindex){
 
         int[] result = new int[data.length];
-        int[] temp = new int[9+1];  //ÊýµÄÃ¿Ò»Î»×î¶àÎª9£¬×îÐ¡Îª0
+        int[] temp = new int[9+1];  //æ•°çš„æ¯ä¸€ä½æœ€å¤šä¸º9ï¼Œæœ€å°ä¸º0
 
         for (int i=0; i<data.length; i++){
             int d = getBitData(data[i],expindex);
@@ -35,7 +34,7 @@ public class h_Radix {
         for (int i=1; i<temp.length; i++){
             temp[i] = temp[i] + temp[i-1];
         }
-        //±ØÐë´Ódata.length-1¿ªÊ¼µÝ¼õ£¬ÕâÊÇ±£Ö¤¼ÆÊýÅÅÐòÎÈ¶¨ÐÔµÄ¹Ø¼üÓï¾ä
+        //å¿…é¡»ä»Ždata.length-1å¼€å§‹é€’å‡ï¼Œè¿™æ˜¯ä¿è¯è®¡æ•°æŽ’åºç¨³å®šæ€§çš„å…³é”®è¯­å¥
         for (int i=data.length-1; i>=0; i--){
             int d = getBitData(data[i],expindex);
             result[temp[d]-1] = data[i];
@@ -44,7 +43,7 @@ public class h_Radix {
         return result;
     }
 
-    //»ñÈ¡dataÖ¸¶¨Î»ÊýµÄÊý×Ö£¬´Ó0¿ªÊ¼
+    //èŽ·å–dataæŒ‡å®šä½æ•°çš„æ•°å­—ï¼Œä»Ž0å¼€å§‹
     private static int getBitData(int data,int expindex){
         for (int i=expindex ; i>0; i--){
             data /=10;
