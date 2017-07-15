@@ -4,147 +4,169 @@ import util.PrintArray;
 import util.Swap;
 
 /**
- * ¶ÑÅÅĞò
- * Created by zhaoshiqiang on 2016/12/11.
+ * å †æ’åº
+ * Created by zhaoshiqiang on 2017/7/15.
  */
-public final class f_heap {
+public class f_heap {
+    //åœ¨æ•°ç»„èŒƒå›´å†…[0, max_index]è¿›è¡Œå»ºå †æ“ä½œ
+    private static int max_index = 0;
 
-    private static int heapSize = 0;
-    public static int[] heap_sort(int[] a){
-        heapSize = a.length-1;
-
-        /*
-        * ×î´ó¶Ñ½¨Á¢ºÃºó£¬×î´óµÄÔªËØÔÚa[1]¡£ÒòÎªÎÒÃÇµÄĞèÇóÊÇ´ÓĞ¡µ½´óÅÅĞò£¬Ï£Íû×î´óµÄ·ÅÔÚ×îºó¡£
-        * Òò´ËÎÒÃÇ½«a[1]ºÍa[i]½»»»£¬´ËÊ±a[i]¾ÍÊÇÊı×éÖĞµÄ×î´óµÄÔªËØ¡£
-        * Çë×¢Òâ£¬½»»»ºó»¹Ğè½«a[1]ÏòÏÂµ÷ÕûÒÔ±£³Ö¶ÑµÄÌØĞÔ¡£
-        * OKÏÖÔÚ×î´óµÄÔªËØÒÑ¾­¹éÎ»£¬ĞèÒª½«¶ÑµÄ´óĞ¡¼õ1¼´heapSize--£¬
-        * È»ºóÔÙ½«a[1]ºÍh[i]½»»»£¬²¢½«a[1]ÏòÏÂµ÷Õû¡£
-        * Èç´Ë·´¸´£¬Ö±µ½¶ÑµÄ´óĞ¡±ä³É1ÎªÖ¹¡£
+    public static int[] heap_sort(int[] a) {
+        /**
+        * æœ€å¤§å †å»ºç«‹å¥½åï¼Œæœ€å¤§çš„å…ƒç´ åœ¨a[1]ã€‚å› ä¸ºæˆ‘ä»¬çš„éœ€æ±‚æ˜¯ä»å°åˆ°å¤§æ’åºï¼Œå¸Œæœ›æœ€å¤§çš„æ”¾åœ¨æœ€åã€‚
+        * å› æ­¤æˆ‘ä»¬å°†a[1]å’Œa[i]äº¤æ¢ï¼Œæ­¤æ—¶a[i]å°±æ˜¯æ•°ç»„ä¸­çš„æœ€å¤§çš„å…ƒç´ ã€‚
+        * è¯·æ³¨æ„ï¼Œäº¤æ¢åè¿˜éœ€å°†a[1]å‘ä¸‹è°ƒæ•´ä»¥ä¿æŒå †çš„ç‰¹æ€§ã€‚
+        * OKç°åœ¨æœ€å¤§çš„å…ƒç´ å·²ç»å½’ä½ï¼Œéœ€è¦å°†å †çš„å¤§å°å‡1å³heapSize--ï¼Œ
+        * ç„¶åå†å°†a[1]å’Œh[i]äº¤æ¢ï¼Œå¹¶å°†a[1]å‘ä¸‹è°ƒæ•´ã€‚
+        * å¦‚æ­¤åå¤ï¼Œç›´åˆ°å †çš„å¤§å°å˜æˆ1ä¸ºæ­¢ã€‚
         * */
-        for (int i=heapSize ; i > 1; i--){
-            Swap.SwapTwoitem(a,i,1);
-            heapSize--;
-//            recursive_max_heapify(a, 1);
-            max_heapify(a,1);
-        }
-
+        do {
+            Swap.SwapTwoitem(a,0,max_index--);
+            max_heapify(a,0);
+        }while (max_index >= 0);
         return a;
     }
 
-    //ÒÔa[i]Îª¸ù½¨Á¢×î´ó¶Ñ£¨µİ¹é°æ£©
-    public static void recursive_max_heapify(int[] a, int i){
-        int largest = i;
-        int left = 2*i; //×óº¢×Ó½Úµã
-        int right = 2*i+1;  //ÓÒº¢×Ó½Úµã
-        //ÈôÆäÓĞ×ó½Úµã(left <= heapSize)£¬ÇÒ×ó½ÚµãµÄÖµ´óÓÚ¸¸½Úµã£¬Ôò±ê¼Ç×î´ó½ÚµãÎª×ó½Úµã
-        if (left <= heapSize && a[largest] < a[left]){
-            largest = left;
-        }
-        //ÓëÉÏÃæ²½ÖèÒ»Ñù£¬Ö»ÊÇÕâÀïÊÇÅĞ¶ÏÓÒ½Úµã
-        if (right <= heapSize && a[largest] < a[right]){
-            largest = right;
-        }
-        if (largest != i){
-            //Ê¹¸¸½ÚµãÎª×î´ó½Úµã
-            Swap.SwapTwoitem(a,i,largest);
-            //µ÷ÕûÓë¸¸½Úµã¶Ôµ÷µÄ×Ó½Úµã£¬Ê¹ÆäÎª×î´ó×Ó¶Ñ
-            recursive_max_heapify(a, largest);
-        }
-    }
-
     /**
-     * ÒÔa[i]Îª¸ù½¨Á¢×î´ó¶Ñ£¨·Çµİ¹é°æ£©£¬ÕâÊÇÓÉÉÏÏòÏÂµ÷Õû
-     * @param a Òª½¨Á¢¶ÑµÄÊı×é
-     * @param i ´ÓÄÄÀï¿ªÊ¼½¨Á¢¶Ñ
+     * å»ºå †çš„æ—¶å€™ï¼Œæ˜¯ç”±åº•å‘ä¸Šå»ºç«‹çš„
+     * @param a
      */
-    public static void max_heapify(int[] a,int i){
-        boolean flag = false;   //±ê¼ÇÊÇ·ñÒÑ¾­½¨ºÃ¶Ñ
-        int max=0;  //ÓÃÓÚ±ê¼Ç×î´óµÄÏÂ±ê
-        while ( i*2 <= heapSize && flag == false){
-            if (a[i] < a[i*2]){
-                max = i*2;
-            }else {
-                max = i;
-            }
-
-            if ( i*2+1 <= heapSize){
-                if ( a[max] < a[i*2+1]){
-                    max = i*2+1;
-                }
-            }
-
-            if (max != i){
-                Swap.SwapTwoitem(a,max,i);
-                i = max;
-            }else {
-                flag = true;
-            }
-        }
-    }
-    /**
-     * ÒÔa[i]Îª¸ù½¨Á¢×îĞ¡¶Ñ£¨·Çµİ¹é°æ£©£¬ÕâÊÇÓÉÉÏÏòÏÂµ÷Õû
-     * @param a Òª½¨Á¢¶ÑµÄÊı×é
-     * @param i ´ÓÄÄÀï¿ªÊ¼½¨Á¢¶Ñ
-     */
-    public static void min_heapify(int[] a,int i){
-        boolean flag = false;   //±ê¼ÇÊÇ·ñÒÑ¾­½¨ºÃ¶Ñ
-        int min = i;    //±ê¼Ç×îĞ¡µÄÏÂ±ê
-        while (i*2 < heapSize && flag == true){
-
-            if (a[i] > a[2*i]){
-                min = 2*i;
-            }
-            if (2*i+1 < heapSize){
-                if (a[min] > a[2*i+1]){
-                    min = 2*i+1;
-                }
-            }
-            if (min != i){
-                Swap.SwapTwoitem(a,min,i);
-                i = min;
-            }else {
-                flag = true;
-            }
-        }
-    }
-    public static void siftup(int[] a,int i){
-        boolean flag = false;   //±ê¼ÇÊÇ·ñÒÑ¾­½¨ºÃ¶Ñ
-        if (i == 1)
-            return;
-        while (i != 1 && flag == false){
-            if (a[i] > a[i/2]){
-                Swap.SwapTwoitem(a,i,i/2);
-            }else {
-                flag = true;
-            }
-            i = i/2;
-        }
-    }
-
-    //½¨¶ÑµÄÊ±ºò£¬ÊÇÓÉµ×ÏòÉÏ½¨Á¢µÄ
     public static void build_max_heap(int[] a){
-        heapSize = a.length-1;
-        //Ò¶×Ó½Úµã²»¹Ü£¬Ö±½Ó´Óµ¹ÊıµÚ¶ş²ã¿ªÊ¼¹¹½¨×î´ó¶Ñ
-        for (int i= heapSize/2; i >= 1; i--){
-//            recursive_max_heapify(a, i);
+        max_index = a.length - 1;
+        //æ•°ç»„æ˜¯ä»0å¼€å§‹ï¼Œæ‰€ä»¥è¿™é‡Œè¦-1
+        //å¶å­èŠ‚ç‚¹ä¸ç®¡ï¼Œç›´æ¥ä»å€’æ•°ç¬¬äºŒå±‚å¼€å§‹æ„å»ºæœ€å¤§å †
+        for (int i = (max_index - 1)/2 ; i>=0; i--){
             max_heapify(a,i);
         }
     }
 
-    //½¨×îĞ¡¶Ñ
-    public static void build_min_heap(int[] a){
-        heapSize = a.length-1;
-        //Ò¶×Ó½Úµã²»¹Ü£¬Ö±½Ó´Óµ¹ÊıµÚ¶ş²ã¿ªÊ¼¹¹½¨×î´ó¶Ñ
-        for (int i= heapSize/2; i >= 1; i--){
-//            recursive_max_heapify(a, i);
-            min_heapify(a,i);
+    /**
+     * ä»¥a[i]ä¸ºæ ¹å»ºç«‹æœ€å¤§å †ï¼ˆé€’å½’ç‰ˆï¼‰
+     * @param a
+     * @param i
+     */
+    public static void recursive_max_heapify(int[] a, int i){
+        int max = i;
+        int left = i*2+1;   //å·¦å­©å­èŠ‚ç‚¹ï¼Œè¿™é‡Œæ˜¯ä»¥0å¼€å§‹çš„ï¼Œæ‰€ä»¥è¦+1ï¼Œä¸‹åŒ
+        int right = i*2+2;  //å³å­©å­èŠ‚ç‚¹
+
+        //è‹¥å…¶æœ‰å·¦èŠ‚ç‚¹(left <= heapSize)ï¼Œä¸”å·¦èŠ‚ç‚¹çš„å€¼å¤§äºçˆ¶èŠ‚ç‚¹ï¼Œåˆ™æ ‡è®°æœ€å¤§èŠ‚ç‚¹ä¸ºå·¦èŠ‚ç‚¹
+        if (left <= max_index && a[left] > a[max]){
+            max = left;
+        }
+        //ä¸ä¸Šé¢æ­¥éª¤ä¸€æ ·ï¼Œåªæ˜¯è¿™é‡Œæ˜¯åˆ¤æ–­å³èŠ‚ç‚¹
+        if (right <= max_index && a[right] > a[max]){
+            max = right;
+        }
+        if (max != i){
+            //ä½¿çˆ¶èŠ‚ç‚¹ä¸ºæœ€å¤§èŠ‚ç‚¹
+            Swap.SwapTwoitem(a,max,i);
+            //è°ƒæ•´ä¸çˆ¶èŠ‚ç‚¹å¯¹è°ƒçš„å­èŠ‚ç‚¹ï¼Œä½¿å…¶ä¸ºæœ€å¤§å­å †
+            recursive_max_heapify(a,max);
         }
     }
 
+    /**
+     * ä»¥a[i]ä¸ºæ ¹å»ºç«‹æœ€å¤§å †ï¼ˆéé€’å½’ç‰ˆï¼‰ï¼Œè¿™æ˜¯ç”±ä¸Šå‘ä¸‹è°ƒæ•´
+     * @param a
+     * @param i
+     */
+    public static void max_heapify(int[] a, int i){
+        int max = i;
+        while (max < max_index){
+            int temp = max;
+            int left = max*2+1;
+            int right = max*2+2;
+
+            if (left <= max_index && a[left] > a[max]){
+                max = left;
+            }
+            if (right <= max_index && a[right] > a[max]){
+                max = right;
+            }
+            //åœ¨è¿™ä¸ªèŠ‚ç‚¹ä¸Šä¸éœ€è¦è°ƒæ•´ï¼Œåˆ™åœ¨å…¶ä¸‹é¢çš„èŠ‚ç‚¹ä¹Ÿæ˜¯ç¬¦åˆæœ€å¤§å †çš„è¦æ±‚ï¼Œç›´æ¥è·³å‡º
+            if (temp == max){
+                break;
+            }
+            //æ³¨æ„è¿™é‡Œæ˜¯tempå’Œminä½ç½®ä¸Šçš„æ•°å­—å¯¹è°ƒ
+            Swap.SwapTwoitem(a,max,temp);
+        }
+    }
+    public static int[] heap_sort_min(int[] a) {
+        do {
+            Swap.SwapTwoitem(a,0,max_index--);
+            recursive_min_heapify(a,0);
+        }while (max_index >= 0);
+        return a;
+    }
+
+    //å»ºæœ€å°å †
+    public static void build_min_heap(int[] a){
+        max_index = a.length - 1;
+        //æ•°ç»„æ˜¯ä»0å¼€å§‹ï¼Œæ‰€ä»¥è¿™é‡Œè¦-1
+        //å¶å­èŠ‚ç‚¹ä¸ç®¡ï¼Œç›´æ¥ä»å€’æ•°ç¬¬äºŒå±‚å¼€å§‹æ„å»ºæœ€å°å †
+        for (int i = (max_index - 1)/2 ; i>=0; i--){
+            recursive_min_heapify(a,i);
+        }
+    }
+
+    public static void min_heapify(int[] a,int i){
+        int min = i;
+        while (min < max_index){
+            int temp = min;
+            int left = min*2+1;
+            int right = min*2+2;
+
+            if (left <= max_index && a[left] < a[min]){
+                min = left;
+            }
+            if (right <= max_index && a[right] < a[min]){
+                min = right;
+            }
+            //åœ¨è¿™ä¸ªèŠ‚ç‚¹ä¸Šä¸éœ€è¦è°ƒæ•´ï¼Œåˆ™åœ¨å…¶ä¸‹é¢çš„èŠ‚ç‚¹ä¹Ÿæ˜¯ç¬¦åˆæœ€å°å †çš„è¦æ±‚ï¼Œç›´æ¥è·³å‡º
+            if (temp == min){
+                break;
+            }
+            //æ³¨æ„è¿™é‡Œæ˜¯tempå’Œminä½ç½®ä¸Šçš„æ•°å­—å¯¹è°ƒ
+            Swap.SwapTwoitem(a,min,temp);
+        }
+    }
+
+    /**
+     * ä»¥a[i]ä¸ºæ ¹å»ºç«‹æœ€å°å †ï¼ˆé€’å½’ç‰ˆï¼‰
+     * @param a
+     * @param i
+     */
+    public static void recursive_min_heapify(int[] a, int i){
+        int min = i;
+        int left = i*2+1;   //å·¦å­©å­èŠ‚ç‚¹ï¼Œè¿™é‡Œæ˜¯ä»¥0å¼€å§‹çš„ï¼Œæ‰€ä»¥è¦+1ï¼Œä¸‹åŒ
+        int right = i*2+2;  //å³å­©å­èŠ‚ç‚¹
+
+        //è‹¥å…¶æœ‰å·¦èŠ‚ç‚¹(left <= heapSize)ï¼Œä¸”å·¦èŠ‚ç‚¹çš„å€¼å°äºçˆ¶èŠ‚ç‚¹ï¼Œåˆ™æ ‡è®°æœ€å°èŠ‚ç‚¹ä¸ºå·¦èŠ‚ç‚¹
+        if (left <= max_index && a[left] < a[min]){
+            min = left;
+        }
+        //ä¸ä¸Šé¢æ­¥éª¤ä¸€æ ·ï¼Œåªæ˜¯è¿™é‡Œæ˜¯åˆ¤æ–­å³èŠ‚ç‚¹
+        if (right <= max_index && a[right] < a[min]){
+            min = right;
+        }
+        if (min != i){
+            //ä½¿çˆ¶èŠ‚ç‚¹ä¸ºæœ€å°èŠ‚ç‚¹
+            Swap.SwapTwoitem(a,min,i);
+            //è°ƒæ•´ä¸çˆ¶èŠ‚ç‚¹å¯¹è°ƒçš„å­èŠ‚ç‚¹ï¼Œä½¿å…¶ä¸ºæœ€å°å­å †
+            recursive_min_heapify(a,min);
+        }
+    }
 
     public static void main(String[] args){
-        int[] a = {0,5,2,6,9,7,1,3,4,8};
+        int[] a = {10,5,2,6,9,7,1,3,4,8};
+        //å †æ’åºæ—¶ï¼Œç¬¬ä¸€æ­¥æ˜¯å¯¹åŸå§‹æ•°ç»„å»ºç«‹æœ€å¤§å †ï¼Œç„¶åå†å¼€å§‹è°ƒæ•´ï¼Œæ’åº
         build_max_heap(a);
         PrintArray.printfArray(heap_sort(a));
+        build_min_heap(a);
+        PrintArray.printfArray(heap_sort_min(a));
+
     }
+
+
 }
