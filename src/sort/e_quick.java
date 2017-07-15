@@ -4,42 +4,41 @@ import util.PrintArray;
 import util.Swap;
 
 /**
- * ¿ìËÙÅÅĞò
- * Created by zhaoshiqiang on 2016/12/9.
+ * å¿«é€Ÿæ’åº
+ * Created by zhaoshiqiang on 2017/7/15.
  */
-public final class e_quick {
-
+public class e_quick {
     public static int[] quick_sort(int[] a){
-        recursive_quicksort(a,1,a.length-1);
+        recursive_quicksort(a,0,a.length-1);
         return a;
     }
-    public static void recursive_quicksort(int[] a,int min,int max){
+
+    public static void recursive_quicksort(int[] a, int min, int max){
         if (min < max){
-            int position = partition(a,min,max);
-            recursive_quicksort(a,min,position-1);
-            recursive_quicksort(a,position+1,max);
+            int p = partition(a,min,max);
+            recursive_quicksort(a, min, p-1);
+            recursive_quicksort(a, p+1, max);
         }
     }
-    //·µ»Ø»ùÊıÎ»ÖÃ
+
+    //è¿”å›åŸºæ•°ä½ç½®
     public static int partition(int[] a,int min,int max){
-        int pivot = a[max]; //Ñ¡Ôñ×îºóÒ»¸öÊıÎª»ùÊı
+        int pivot = a[max]; //é€‰æ‹©æœ€åä¸€ä¸ªæ•°ä¸ºåŸºæ•°
         int position = min;
-        //´ÓÊı×é¿ªÊ¼É¨µ½µ¹ÊıµÚ¶ş¸ö
+        //ä»æ•°ç»„å¼€å§‹æ‰«åˆ°å€’æ•°ç¬¬äºŒä¸ª
         for (int j = min ; j < max; j++){
-            //½«Ğ¡ÓÚ»ùÊıµÄÊı¶¼·Åµ½»ùÊıµÄ×ó±ß£¨½«À´»ùÊı½«Òª·Åµ½Êı×éÖĞpositionµÄÎ»ÖÃ£©
+            //å°†å°äºåŸºæ•°çš„æ•°éƒ½æ”¾åˆ°åŸºæ•°çš„å·¦è¾¹ï¼ˆå°†æ¥åŸºæ•°å°†è¦æ”¾åˆ°æ•°ç»„ä¸­positionçš„ä½ç½®ï¼‰
             if (a[j] <= pivot){
                 Swap.SwapTwoitem(a,j,position);
                 position++;
             }
         }
-        //½«»ùÊı¹éÎ»
+        //å°†åŸºæ•°å½’ä½
         Swap.SwapTwoitem(a,max,position);
-//        PrintArray.printfArray(a);
         return position;
     }
-
     public static void main(String[] args){
-        int[] a = {0,5,2,6,9,7,1,3,4,8};
+        int[] a = {10,5,2,6,9,7,1,3,4,8};
         PrintArray.printfArray(quick_sort(a));
     }
 }
