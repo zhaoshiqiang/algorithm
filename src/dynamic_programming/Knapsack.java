@@ -186,80 +186,82 @@ public class Knapsack {
         Knapsack multiple_complete = Knapsack_Multiple(10, stuff_multiple);
         multiple_complete.MultipleKnapsack_solve();
     }
-}
 
-class Record{
-    private int value;
-    private int x_parent;
-    private int y_parent;
+    static class Record{
+        private int value;
+        private int x_parent;
+        private int y_parent;
 
-    public Record(int value) {
-        this.value = value;
-        this.x_parent=0;
-        this.y_parent=0;
+        public Record(int value) {
+            this.value = value;
+            this.x_parent=0;
+            this.y_parent=0;
+        }
+
+        public int getValue() {
+            return value;
+        }
+
+        public void setValue(int value) {
+            this.value = value;
+        }
+
+        public int getX_parent() {
+            return x_parent;
+        }
+
+        public void setX_parent(int x_parent) {
+            this.x_parent = x_parent;
+        }
+
+        public int getY_parent() {
+            return y_parent;
+        }
+
+        public void setY_parent(int y_parent) {
+            this.y_parent = y_parent;
+        }
+    }
+    static class Stuff{
+        private int weight;
+        private int value;
+        private int maxnum;
+
+        public Stuff(int weight, int value) {
+            this.weight = weight;
+            this.value = value;
+        }
+
+        public Stuff(int weight, int value, int maxnum) {
+            this.weight = weight;
+            this.value = value;
+            this.maxnum = maxnum;
+        }
+
+        public int getWeight() {
+            return weight;
+        }
+
+        public void setWeight(int weight) {
+            this.weight = weight;
+        }
+
+        public int getValue() {
+            return value;
+        }
+
+        public void setValue(int value) {
+            this.value = value;
+        }
+
+        public int getMaxnum() {
+            return maxnum;
+        }
+
+        public void setMaxnum(int maxnum) {
+            this.maxnum = maxnum;
+        }
+
     }
 
-    public int getValue() {
-        return value;
-    }
-
-    public void setValue(int value) {
-        this.value = value;
-    }
-
-    public int getX_parent() {
-        return x_parent;
-    }
-
-    public void setX_parent(int x_parent) {
-        this.x_parent = x_parent;
-    }
-
-    public int getY_parent() {
-        return y_parent;
-    }
-
-    public void setY_parent(int y_parent) {
-        this.y_parent = y_parent;
-    }
-}
-class Stuff{
-    private int weight;
-    private int value;
-    private int maxnum;
-
-    public Stuff(int weight, int value) {
-        this.weight = weight;
-        this.value = value;
-    }
-
-    public Stuff(int weight, int value, int maxnum) {
-        this.weight = weight;
-        this.value = value;
-        this.maxnum = maxnum;
-    }
-
-    public int getWeight() {
-        return weight;
-    }
-
-    public void setWeight(int weight) {
-        this.weight = weight;
-    }
-
-    public int getValue() {
-        return value;
-    }
-
-    public void setValue(int value) {
-        this.value = value;
-    }
-
-    public int getMaxnum() {
-        return maxnum;
-    }
-
-    public void setMaxnum(int maxnum) {
-        this.maxnum = maxnum;
-    }
 }
