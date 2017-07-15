@@ -4,18 +4,16 @@ import util.PrintArray;
 import util.Swap;
 
 /**
- * Ã°ÅİÅÅĞò
- * Created by zhaoshiqiang on 2016/12/9.
+ * å†’æ³¡æ’åº
+ * åŸºæœ¬æ€æƒ³æ˜¯ï¼šæ¯”è¾ƒ+äº¤æ¢
+ * Created by zhaoshiqiang on 2017/7/15.
  */
-public final class b_bubble {
-
+public class b_bubble {
     public static int[] Bubble_sort(int[] a){
-        int n = a.length;
-        for (int i=1 ; i < n ; i++){
-//            System.out.println(i);
-            for (int j=n-1 ; j>i ; j--){
-                if (a[j] < a[j-1]){
-                    Swap.SwapTwoitem(a,j,j-1);
+        for (int i = a.length; i >0; i--) {
+            for (int j=0; j<i-1 ; j++){
+                if (a[j] > a[j+1]){
+                    Swap.SwapTwoitem(a,j,j+1);
                 }
             }
         }
@@ -23,19 +21,16 @@ public final class b_bubble {
     }
 
     public static int[] Bubble_sortII(int[] a){
-        int n = a.length;
-        boolean sortflag = false;   //ÊÇ·ñÒÑ¾­ÅÅºÃĞò£¬ÒÑ¾­ÅÅºÃÔòÎªtrue
-        for (int i=1 ; i < n ; i++){
-            if (sortflag == true)
+        boolean flag = false; //æ ‡è¯†æ˜¯å¦å·²ç»æ’å¥½åº
+        for (int i = a.length; i >0; i--) {
+            if (flag == true){
                 return a;
-            sortflag = true;
-//            System.out.println(i);
-            for (int j=n-1 ; j>i ; j--){
-                if (a[j] < a[j-1]){
-                    int k = a[j];
-                    a[j] = a[j-1];
-                    a[j-1] = k;
-                    sortflag = false;
+            }
+            flag = true;
+            for (int j=0; j<i-1 ; j++){
+                if (a[j] > a[j+1]){
+                    Swap.SwapTwoitem(a,j,j+1);
+                    flag = false;
                 }
             }
         }
@@ -43,8 +38,8 @@ public final class b_bubble {
     }
 
     public static void main(String[] args){
-        int[] a = {0,5,2,6,9,7,1,3,4,8};
-//        PrintArray.printfArray(Bubble_sort(a));
+        int[] a = {10,5,2,6,9,7,1,3,4,8};
+        PrintArray.printfArray(Bubble_sort(a));
         PrintArray.printfArray(Bubble_sortII(a));
     }
 }
