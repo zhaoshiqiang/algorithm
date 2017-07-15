@@ -4,16 +4,14 @@ import util.PrintArray;
 import util.Swap;
 
 /**
- * —°‘Ò≈≈–Ú
- * Created by zhaoshiqiang on 2016/12/9.
+ * ÈÄâÊã©ÊéíÂ∫è
+ * Created by zhaoshiqiang on 2017/7/15.
  */
-public final class c_selection {
-
+public class c_selection {
     public static int[] select_sort(int[] a){
-        int n = a.length;
-        for (int i=1; i<n-1 ; i++){
+        for (int i=0; i<a.length ; i++){
             int min = i;
-            for (int j = i+1; j<n; j++){
+            for (int j=i+1; j<a.length ; j++){
                 if (a[min] > a[j]){
                     min = j;
                 }
@@ -24,7 +22,7 @@ public final class c_selection {
     }
 
     public static void main(String[] args){
-        int[] a = {0,5,2,6,9,7,1,3,4,8};
+        int[] a = {10,5,2,6,9,7,1,3,4,8};
         PrintArray.printfArray(select_sort(a));
     }
 }
