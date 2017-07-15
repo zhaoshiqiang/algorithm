@@ -1,20 +1,20 @@
 package tree;
 
 /**
- * ¶ş²æ²éÕÒÊ÷(Binary Search Tree)ÊÇÂú×ãÈçÏÂĞÔÖÊµÄ¶ş²æÊ÷£º
- * ¢ÙÈôËüµÄ×ó×ÓÊ÷·Ç¿Õ£¬Ôò×ó×ÓÊ÷ÉÏËùÓĞ½áµãµÄÖµ¾ùĞ¡ÓÚ¸ù½áµãµÄÖµ£»
- * ¢ÚÈôËüµÄÓÒ×ÓÊ÷·Ç¿Õ£¬ÔòÓÒ×ÓÊ÷ÉÏËùÓĞ½áµãµÄÖµ¾ù´óÓÚ¸ù½áµãµÄÖµ£»
- * ¢Û×ó¡¢ÓÒ×ÓÊ÷±¾ÉíÓÖ¸÷ÊÇÒ»¿Ã¶ş²æ²éÕÒÊ÷¡£
- * Í¨Ë×µÄ½²£¬¶ş²æ²éÕÒÊ÷µÄ×ó×ÓÊ÷ÉÏµÄ½áµã²»±È¸¸½áµã´ó£¬ÓÒ×ÓÊ÷ÉÏµÄ½áµã²»±È¸¸½áµãĞ¡¡£
- * ³ıÁË±éÀúÖ®Íâ£¬BSTµÄËùÓĞ²Ù×÷Ò»°ã¶¼ÎªO(lgn)£¬
- * ÈôBSTÍË»¯³ÉÒ»¿Å¾ßÓĞn¸ö½ÚµãµÄÏßĞÔÁ´ºó£¬ÔòÕâĞ©²Ù×÷×î»µÔËĞĞÊ±¼äÎªO(n)
- * Created by zhaoshiqiang on 2016/12/13.
+ * äºŒå‰æŸ¥æ‰¾æ ‘(Binary Search Tree)æ˜¯æ»¡è¶³å¦‚ä¸‹æ€§è´¨çš„äºŒå‰æ ‘ï¼š
+ * â‘ è‹¥å®ƒçš„å·¦å­æ ‘éç©ºï¼Œåˆ™å·¦å­æ ‘ä¸Šæ‰€æœ‰ç»“ç‚¹çš„å€¼å‡å°äºæ ¹ç»“ç‚¹çš„å€¼ï¼›
+ * â‘¡è‹¥å®ƒçš„å³å­æ ‘éç©ºï¼Œåˆ™å³å­æ ‘ä¸Šæ‰€æœ‰ç»“ç‚¹çš„å€¼å‡å¤§äºæ ¹ç»“ç‚¹çš„å€¼ï¼›
+ * â‘¢å·¦ã€å³å­æ ‘æœ¬èº«åˆå„æ˜¯ä¸€æ£µäºŒå‰æŸ¥æ‰¾æ ‘ã€‚
+ * é€šä¿—çš„è®²ï¼ŒäºŒå‰æŸ¥æ‰¾æ ‘çš„å·¦å­æ ‘ä¸Šçš„ç»“ç‚¹ä¸æ¯”çˆ¶ç»“ç‚¹å¤§ï¼Œå³å­æ ‘ä¸Šçš„ç»“ç‚¹ä¸æ¯”çˆ¶ç»“ç‚¹å°ã€‚
+ * é™¤äº†éå†ä¹‹å¤–ï¼ŒBSTçš„æ‰€æœ‰æ“ä½œä¸€èˆ¬éƒ½ä¸ºO(lgn)ï¼Œ
+ * è‹¥BSTé€€åŒ–æˆä¸€é¢—å…·æœ‰nä¸ªèŠ‚ç‚¹çš„çº¿æ€§é“¾åï¼Œåˆ™è¿™äº›æ“ä½œæœ€åè¿è¡Œæ—¶é—´ä¸ºO(n)
+ * Created by zhaoshiqiang on 2017/7/15.
  */
 public class BST {
 
     /**
-     * BSTÇ°Ğò±éÀú
-     * @param root Òª±éÀúÊ÷µÄ¸ù
+     * BSTå‰åºéå†
+     * @param root è¦éå†æ ‘çš„æ ¹
      */
     public void preOrder_recur(BSTnode root){
         if (root != null){
@@ -23,9 +23,10 @@ public class BST {
             preOrder_recur(root.getRight());
         }
     }
+
     /**
-     * BSTÖĞĞò±éÀú
-     * @param root Òª±éÀúÊ÷µÄ¸ù
+     * BSTä¸­åºéå†
+     * @param root è¦éå†æ ‘çš„æ ¹
      */
     public void inOrder_recur(BSTnode root){
         if (root != null){
@@ -34,9 +35,10 @@ public class BST {
             inOrder_recur(root.getRight());
         }
     }
+
     /**
-     * BSTºóĞò±éÀú
-     * @param root Òª±éÀúÊ÷µÄ¸ù
+     * BSTååºéå†
+     * @param root è¦éå†æ ‘çš„æ ¹
      */
     public void postOrder_recur(BSTnode root){
         if (root != null){
@@ -47,187 +49,183 @@ public class BST {
     }
 
     /**
-     * BSTµİ¹é°æ²åÈë
-     * @param root ÏòÄÄ¿ÅÊ÷²åÈëÖµ
-     * @param key Òª²åÈëµÄÖµ
-     * @return ÒÑ¾­²åÈëÖµµÄÊ÷
+     * BSTé€’å½’ç‰ˆæ’å…¥
+     * @param root å‘å“ªé¢—æ ‘æ’å…¥å€¼
+     * @param key è¦æ’å…¥çš„å€¼
+     * @return å·²ç»æ’å…¥å€¼çš„æ ‘
      */
-    public BSTnode insert_recur(BSTnode root,int key, BSTnode parent){
-        //¸ÃÊ÷Îª¿Õ£¬ÔòĞÂ½¨Ò»¸ö
-        if (root == null)
-            return new BSTnode(key,parent);
-        if (root.getKey() > key){
-            root.setLeft(insert_recur(root.getLeft(),key,root));
-        }else {
-            root.setRight(insert_recur(root.getRight(), key, root));
-        }
-        return root;
-    }
-
     public BSTnode insert_recur(BSTnode root,int key){
         return insert_recur(root,key,null);
     }
 
+    public BSTnode insert_recur(BSTnode root,int key, BSTnode parent){
+        //è¯¥æ ‘ä¸ºç©ºï¼Œåˆ™æ–°å»ºä¸€ä¸ª
+        if (root == null){
+            return new BSTnode(key, parent);
+        }
+        if (key > root.getKey()){
+            root.setRight(insert_recur(root.getRight(),key,root));
+        }else {
+            root.setLeft(insert_recur(root.getLeft(),key,root));
+        }
+        return root;
+    }
+
     /**
-     * BST·Çµİ¹é°æ²åÈë
-     * @param root ÏòÄÄ¿ÅÊ÷²åÈëÖµ
-     * @param key Òª²åÈëµÄÖµ
-     * @return ÒÑ¾­²åÈëÖµµÃÊ÷
+     * BSTéé€’å½’ç‰ˆæ’å…¥
+     * @param root å‘å“ªé¢—æ ‘æ’å…¥å€¼
+     * @param key è¦æ’å…¥çš„å€¼
+     * @return å·²ç»æ’å…¥å€¼å¾—æ ‘
      */
     public BSTnode insert_unrecur(BSTnode root,int key){
 
         if (root == null)
             return new BSTnode(key,null);
-        BSTnode p = root;
-        BSTnode parent = null;
-
+        BSTnode p =root;
+        BSTnode pre = null;
         while (p != null){
-            parent = p;
+            pre = p;
             if (p.getKey() > key){
                 p = p.getLeft();
             }else {
                 p = p.getRight();
             }
         }
-        if (parent.getKey() > key){
-            parent.setLeft(new BSTnode(key,parent));
+        if (pre.getKey() > key){
+            pre.setLeft(new BSTnode(key,pre));
         }else {
-            parent.setRight(new BSTnode(key,parent));
+            pre.setRight(new BSTnode(key,pre));
         }
         return root;
     }
 
     /**
-     * BSTµİ¹é°æ²éÑ¯
-     * @param root Òª²éÑ¯µÄÊ÷
-     * @param key Òª²éÑ¯µÄÖµ
-     * @return ÈôÕÒµ½Ôò·µ»Ø¶ÔÓ¦½Úµã£¬ÕÒ²»µ½Ôò·µ»Ønull
+     * BSTé€’å½’ç‰ˆæŸ¥è¯¢
+     * @param root è¦æŸ¥è¯¢çš„æ ‘
+     * @param key è¦æŸ¥è¯¢çš„å€¼
+     * @return è‹¥æ‰¾åˆ°åˆ™è¿”å›å¯¹åº”èŠ‚ç‚¹ï¼Œæ‰¾ä¸åˆ°åˆ™è¿”å›null
      */
     public BSTnode check_recur(BSTnode root,int key){
-        if (root == null)
+        if (root == null){
             return null;
-        if (root.getKey() > key){
-            return check_recur(root.getLeft(),key);
-        }else if (root.getKey() < key){
+        }
+        if (root.getKey() < key){
             return check_recur(root.getRight(),key);
+        }else if (root.getKey() > key){
+            return check_recur(root.getLeft(),key);
         }else {
             return root;
         }
     }
 
     /**
-     * BST·Çµİ¹é°æ²éÑ¯
-     * @param root Òª²éÑ¯µÄÊ÷
-     * @param key Òª²éÑ¯µÄÖµ
-     * @return ÈôÕÒµ½Ôò·µ»Ø¶ÔÓ¦½Úµã£¬ÕÒ²»µ½Ôò·µ»Ønull
+     * BSTéé€’å½’ç‰ˆæŸ¥è¯¢
+     * @param root è¦æŸ¥è¯¢çš„æ ‘
+     * @param key è¦æŸ¥è¯¢çš„å€¼
+     * @return è‹¥æ‰¾åˆ°åˆ™è¿”å›å¯¹åº”èŠ‚ç‚¹ï¼Œæ‰¾ä¸åˆ°åˆ™è¿”å›null
      */
     public BSTnode check_unrecur(BSTnode root,int key){
-        BSTnode p = root;
-        if (p == null)
+        if (root == null){
             return null;
-
-        while (p != null){
-            if (p.getKey() > key){
-                p = p.getLeft();
-            }else if (p.getKey() < key){
-                p = p.getRight();
+        }
+        while (root != null){
+            if (root.getKey() < key){
+                root = root.getRight();
+            }else if (root.getKey() > key){
+                root = root.getLeft();
             }else {
-                return p;
+                return root;
             }
         }
-
-        return null;
+        return root;
     }
 
     /**
-     * BSTµİ¹é°æ·µ»Ø×î´ó½Úµã
-     * @param root Òª²éÕÒµÄÊ÷
-     * @return ×î´óÖµ¶ÔÓ¦µÄ½Úµã
+     * BSTé€’å½’ç‰ˆè¿”å›æœ€å¤§èŠ‚ç‚¹
+     * @param root è¦æŸ¥æ‰¾çš„æ ‘
+     * @return æœ€å¤§å€¼å¯¹åº”çš„èŠ‚ç‚¹
      */
     public BSTnode max_node_recur(BSTnode root){
-
-        if (root.getRight() == null)
-            return root;
-        else
+        if (root == null){
+            return null;
+        }
+        if (root.getRight() != null){
             return max_node_recur(root.getRight());
-
+        }else {
+            return root;
+        }
     }
-
     /**
-     * BST·Çµİ¹é°æ·µ»Ø×î´ó½Úµã
-     * @param root Òª²éÕÒµÄÊ÷
-     * @return ×î´óÖµ¶ÔÓ¦µÄ½Úµã
+     * BSTéé€’å½’ç‰ˆè¿”å›æœ€å¤§èŠ‚ç‚¹
+     * @param root è¦æŸ¥æ‰¾çš„æ ‘
+     * @return æœ€å¤§å€¼å¯¹åº”çš„èŠ‚ç‚¹
      */
     public BSTnode max_node_unrecur(BSTnode root){
-
-        BSTnode p = root;
-        BSTnode parent = null;
-
-        while (p != null){
-            parent = p;
-            p = p.getRight();
+        if (root == null){
+            return null;
         }
-        return parent;
+        while (root.getRight() != null){
+            root = root.getRight();
+        }
+        return root;
     }
 
     /**
-     * BSTµİ¹é°æ·µ»Ø×îĞ¡½Úµã
-     * @param root Òª²éÕÒµÄÊ÷
-     * @return ×îĞ¡Öµ¶ÔÓ¦µÄ½Úµã
+     * BSTé€’å½’ç‰ˆè¿”å›æœ€å°èŠ‚ç‚¹
+     * @param root è¦æŸ¥æ‰¾çš„æ ‘
+     * @return æœ€å°å€¼å¯¹åº”çš„èŠ‚ç‚¹
      */
     public BSTnode min_node_recur(BSTnode root){
-
-        if (root.getLeft() == null)
-            return root;
-        else
+        if (root == null){
+            return null;
+        }
+        if (root.getLeft() != null){
             return min_node_recur(root.getLeft());
-
+        }else {
+            return root;
+        }
     }
 
     /**
-     * BST·Çµİ¹é°æ·µ»Ø×îĞ¡½Úµã
-     * @param root Òª²éÕÒµÄÊ÷
-     * @return ×îĞ¡Öµ¶ÔÓ¦µÄ½Úµã
+     * BSTéé€’å½’ç‰ˆè¿”å›æœ€å°èŠ‚ç‚¹
+     * @param root è¦æŸ¥æ‰¾çš„æ ‘
+     * @return æœ€å°å€¼å¯¹åº”çš„èŠ‚ç‚¹
      */
     public BSTnode min_node_unrecur(BSTnode root){
-
-        BSTnode p = root;
-        BSTnode parent = null;
-
-        while (p != null){
-            parent = p;
-            p = p.getLeft();
+        if (root == null){
+            return null;
         }
-        return parent;
-
+        while (root.getLeft() != null){
+            root = root.getLeft();
+        }
+        return root;
     }
 
-    /*
-    * ÏÈÀí½âÇ°ÇıºÍºó¼ÌµÄº¬Òå¡£
-        ½ÚµãkeyµÄÇ°Çı£¬¾ÍÊÇÖĞĞò±éÀúÊ±£¬±ÈkeyĞ¡µÄËùÓĞ½ÚµãÖĞ×î´óµÄÄÇ¸ö½Úµã¡£
-        ½ÚµãkeyµÄºó¼Ì£¬¾ÍÊÇÖĞĞò±éÀúÊ±£¬±ÈkeyĞ¡µÄËùÓĞ½ÚµãÖĞ×î´óµÄÄÇ¸ö½Úµã¡£
-      ÈİÒ×¿´³ö£¬½ÚµãkeyµÄÇ°ÇıÒ»¶¨Ã»ÓĞÓÒ¶ù×Ó£»ºó¼Ì½ÚµãÒ»¶¨Ã»ÓĞ×ó¶ù×Ó
+    /**
+     *  å…ˆç†è§£å‰é©±å’Œåç»§çš„å«ä¹‰ã€‚
+     *  èŠ‚ç‚¹keyçš„å‰é©±ï¼Œå°±æ˜¯ä¸­åºéå†æ—¶ï¼Œæ¯”keyå°çš„æ‰€æœ‰èŠ‚ç‚¹ä¸­æœ€å¤§çš„é‚£ä¸ªèŠ‚ç‚¹ã€‚
+     *  èŠ‚ç‚¹keyçš„åç»§ï¼Œå°±æ˜¯ä¸­åºéå†æ—¶ï¼Œæ¯”keyå°çš„æ‰€æœ‰èŠ‚ç‚¹ä¸­æœ€å¤§çš„é‚£ä¸ªèŠ‚ç‚¹ã€‚
+     *  å®¹æ˜“çœ‹å‡ºï¼ŒèŠ‚ç‚¹keyçš„å‰é©±ä¸€å®šæ²¡æœ‰å³å„¿å­ï¼›åç»§èŠ‚ç‚¹ä¸€å®šæ²¡æœ‰å·¦å„¿å­
     * */
 
     /**
-     * ÔÚrootÖĞ²éÕÒkey¶ÔÓ¦µÄÇ°Çı½Úµã£¬¼´²éÕÒÊıÖµĞ¡ÓÚkeyµÄ×î´ó½Úµã
-     * @param root Òª²éÕÒÊ÷µÄ¸ù½Úµã
-     * @param key Òª²éÕÒÇ°Çı½ÚµãµÄÖµ
-     * @return keyÖµ¶ÔÓ¦µÄÇ°Çı½Úµã
+     * åœ¨rootä¸­æŸ¥æ‰¾keyå¯¹åº”çš„å‰é©±èŠ‚ç‚¹ï¼Œå³æŸ¥æ‰¾æ•°å€¼å°äºkeyçš„æœ€å¤§èŠ‚ç‚¹
+     * @param root è¦æŸ¥æ‰¾æ ‘çš„æ ¹èŠ‚ç‚¹
+     * @param key è¦æŸ¥æ‰¾å‰é©±èŠ‚ç‚¹çš„å€¼
+     * @return keyå€¼å¯¹åº”çš„å‰é©±èŠ‚ç‚¹
      */
     public BSTnode preNode(BSTnode root,int key){
-
         BSTnode p = check_recur(root,key);
         if (p == null){
             return null;
         }
-        //Èç¹ûp´æÔÚ×óº¢×Ó£¬Ôò"pµÄÇ°Çı½áµã"Îª "ÒÔÆä×óº¢×ÓÎª¸ùµÄ×ÓÊ÷µÄ×î´ó½áµã"¡£
+        //å¦‚æœpå­˜åœ¨å·¦å­©å­ï¼Œåˆ™"pçš„å‰é©±ç»“ç‚¹"ä¸º "ä»¥å…¶å·¦å­©å­ä¸ºæ ¹çš„å­æ ‘çš„æœ€å¤§ç»“ç‚¹"ã€‚
         if (p.getLeft() != null){
             return max_node_recur(p.getLeft());
         }
-        //Èç¹ûpÃ»ÓĞ×óº¢×Ó£¬ÔòpÓĞÒÔÏÂÁ½ÖÖ¿ÉÄÜ£º
-        //(1) pÊÇÒ»¸öÓÒº¢×Ó£¬Ôò"pµÄÇ°Çı½áµã"ÎªpµÄ¸¸½Úµã
-        //(2) pÊÇÒ»¸ö×óº¢×Ó£¬Ôò"pµÄÇ°Çı½áµã"ÎªpµÄÄ³Ò»¸ö×æÏÈµÄ¸¸½Úµã£¬ÇÒ¸Ã×æÏÈ½ÚµãÊÇÆä¸¸½ÚµãµÄÓÒº¢×Ó
+        //å¦‚æœpæ²¡æœ‰å·¦å­©å­ï¼Œåˆ™pæœ‰ä»¥ä¸‹ä¸¤ç§å¯èƒ½ï¼š
+        //(1) pæ˜¯ä¸€ä¸ªå³å­©å­ï¼Œåˆ™"pçš„å‰é©±ç»“ç‚¹"ä¸ºpçš„çˆ¶èŠ‚ç‚¹
+        //(2) pæ˜¯ä¸€ä¸ªå·¦å­©å­ï¼Œåˆ™"pçš„å‰é©±ç»“ç‚¹"ä¸ºpçš„æŸä¸€ä¸ªç¥–å…ˆçš„çˆ¶èŠ‚ç‚¹ï¼Œä¸”è¯¥ç¥–å…ˆèŠ‚ç‚¹æ˜¯ä½œä¸ºå…¶çˆ¶èŠ‚ç‚¹çš„å³å­©å­
         BSTnode parent = p.getParent();
         while (parent !=null && parent.getLeft() == p){
             p = parent;
@@ -237,10 +235,10 @@ public class BST {
     }
 
     /**
-     * ÔÚrootÖĞ²éÕÒkey¶ÔÓ¦µÄºó¼Ì½Úµã£¬¼´²éÕÒÊıÖµ´óÓÚkeyµÄ×îĞ¡½Úµã
-     * @param root Òª²éÕÒÊ÷µÄ¸ù½Úµã
-     * @param key Òª²éÕÒºó¼Ì½ÚµãµÄÖµ
-     * @return keyÖµ¶ÔÓ¦µÄºó¼Ì½Úµã
+     * åœ¨rootä¸­æŸ¥æ‰¾keyå¯¹åº”çš„åç»§èŠ‚ç‚¹ï¼Œå³æŸ¥æ‰¾æ•°å€¼å¤§äºkeyçš„æœ€å°èŠ‚ç‚¹
+     * @param root è¦æŸ¥æ‰¾æ ‘çš„æ ¹èŠ‚ç‚¹
+     * @param key è¦æŸ¥æ‰¾åç»§èŠ‚ç‚¹çš„å€¼
+     * @return keyå€¼å¯¹åº”çš„åç»§èŠ‚ç‚¹
      */
     public BSTnode postNode(BSTnode root,int key){
 
@@ -248,13 +246,13 @@ public class BST {
         if (p == null){
             return null;
         }
-        // Èç¹ûp´æÔÚÓÒº¢×Ó£¬Ôò"pµÄºó¼Ì½áµã"Îª "ÒÔÆäÓÒº¢×ÓÎª¸ùµÄ×ÓÊ÷µÄ×îĞ¡½áµã"¡£
+        // å¦‚æœpå­˜åœ¨å³å­©å­ï¼Œåˆ™"pçš„åç»§ç»“ç‚¹"ä¸º "ä»¥å…¶å³å­©å­ä¸ºæ ¹çš„å­æ ‘çš„æœ€å°ç»“ç‚¹"ã€‚
         if (p.getRight() != null){
             return min_node_recur(p.getRight());
         }
-        // Èç¹ûpÃ»ÓĞÓÒº¢×Ó¡£ÔòpÓĞÒÔÏÂÁ½ÖÖ¿ÉÄÜ£º
-        //(1) pÊÇ"Ò»¸ö×óº¢×Ó"£¬Ôò"pµÄºó¼Ì½áµã"Îª "ËüµÄ¸¸½áµã"¡£
-        //(2) pÊÇ"Ò»¸öÓÒº¢×Ó"£¬Ôò Ç°Çı½ÚµãÎªpµÄÄ³Ò»¸ö×æÏÈ½ÚµãµÄ¸¸½Úµã£¬¶øÇÒ¸Ã×æÏÈ½ÚµãÊÇ×÷ÎªÆä¸¸½ÚµãµÄ×ó¶ù×Ó
+        // å¦‚æœpæ²¡æœ‰å³å­©å­ã€‚åˆ™pæœ‰ä»¥ä¸‹ä¸¤ç§å¯èƒ½ï¼š
+        //(1) pæ˜¯"ä¸€ä¸ªå·¦å­©å­"ï¼Œåˆ™"pçš„åç»§ç»“ç‚¹"ä¸º "å®ƒçš„çˆ¶ç»“ç‚¹"ã€‚
+        //(2) pæ˜¯"ä¸€ä¸ªå³å­©å­"ï¼Œåˆ™ å‰é©±èŠ‚ç‚¹ä¸ºpçš„æŸä¸€ä¸ªç¥–å…ˆèŠ‚ç‚¹çš„çˆ¶èŠ‚ç‚¹ï¼Œè€Œä¸”è¯¥ç¥–å…ˆèŠ‚ç‚¹æ˜¯ä½œä¸ºå…¶çˆ¶èŠ‚ç‚¹çš„å·¦å„¿å­
         BSTnode parent =p.getParent();
         while (parent != null && parent.getRight() == p){
             p = parent;
@@ -262,81 +260,82 @@ public class BST {
         }
         return parent;
     }
+
     /**
-     * BSTÉ¾³ı½Úµã
-     * @param root Òª²Ù×÷µÄÊ÷
-     * @param key ÒªÉ¾³ı½ÚµãµÄÖµ
-     * @return É¾³ı½ÚµãºóµÄÊ÷
+     * BSTåˆ é™¤èŠ‚ç‚¹
+     * @param root è¦æ“ä½œçš„æ ‘
+     * @param key è¦åˆ é™¤èŠ‚ç‚¹çš„å€¼
+     * @return åˆ é™¤èŠ‚ç‚¹åçš„æ ‘
      */
     /*
-    * ¶ş²æ²éÕÒÊ÷µÄÉ¾³ı£¬·ÖÈıÖÖÇé¿ö½øĞĞ´¦Àí£º
-        1.pÎªÒ¶×Ó½Úµã£¬Ö±½ÓÉ¾³ı¸Ã½Úµã£¬ÔÙĞŞ¸ÄÆä¸¸½ÚµãµÄÖ¸Õë£¨ÕâÀïÒª×¢ÒâÇø±ğÊÇ¸ù½ÚµãºÍ²»ÊÇ¸ù½Úµã£©
-        2.pÎªµ¥Ö§½Úµã£¨¼´Ö»ÓĞ×ó×ÓÊ÷»òÓÒ×ÓÊ÷£©¡£ÈÃpµÄ×ÓÊ÷ÓëpµÄ¸¸Ç×½ÚµãÏàÁ¬£¬É¾³ıp¼´¿É£»£¨×¢Òâ·ÖÊÇ¸ù½ÚµãºÍ²»ÊÇ¸ù½Úµã£©£»
-        3.ÓĞÁ½¸öº¢×ÓµÄÇé¿ö£¬µ±Ç°½áµãÓë×ó×ÓÊ÷ÖĞ×î´óµÄÔªËØ½»»»£¬È»ºóÉ¾³ıµ±Ç°½áµã¡£×ó×ÓÊ÷×î´óµÄÔªËØÒ»¶¨ÊÇÒ¶×Ó½áµã£¬½»»»ºó£¬
-            µ±Ç°½áµã¼´ÎªÒ¶×Ó½áµã£¬É¾³ı²Î¿¼Ã»ÓĞº¢×ÓµÄÇé¿ö¡£ÁíÒ»ÖÖ·½·¨ÊÇ£¬µ±Ç°½áµãÓëÓÒ×ÓÊ÷ÖĞ×îĞ¡µÄÔªËØ½»»»£¬È»ºóÉ¾³ıµ±Ç°½áµã¡£
+    * äºŒå‰æŸ¥æ‰¾æ ‘çš„åˆ é™¤ï¼Œåˆ†ä¸‰ç§æƒ…å†µè¿›è¡Œå¤„ç†ï¼š
+        1.pä¸ºå¶å­èŠ‚ç‚¹ï¼Œç›´æ¥åˆ é™¤è¯¥èŠ‚ç‚¹ï¼Œå†ä¿®æ”¹å…¶çˆ¶èŠ‚ç‚¹çš„æŒ‡é’ˆï¼ˆè¿™é‡Œè¦æ³¨æ„åŒºåˆ«æ˜¯æ ¹èŠ‚ç‚¹å’Œä¸æ˜¯æ ¹èŠ‚ç‚¹ï¼‰
+        2.pä¸ºå•æ”¯èŠ‚ç‚¹ï¼ˆå³åªæœ‰å·¦å­æ ‘æˆ–å³å­æ ‘ï¼‰ã€‚è®©pçš„å­æ ‘ä¸pçš„çˆ¶äº²èŠ‚ç‚¹ç›¸è¿ï¼Œåˆ é™¤på³å¯ï¼›ï¼ˆæ³¨æ„åˆ†æ˜¯æ ¹èŠ‚ç‚¹å’Œä¸æ˜¯æ ¹èŠ‚ç‚¹ï¼‰ï¼›
+        3.æœ‰ä¸¤ä¸ªå­©å­çš„æƒ…å†µï¼Œå½“å‰ç»“ç‚¹ä¸å·¦å­æ ‘ä¸­æœ€å¤§çš„å…ƒç´ äº¤æ¢ï¼Œç„¶ååˆ é™¤å½“å‰ç»“ç‚¹ã€‚å·¦å­æ ‘æœ€å¤§çš„å…ƒç´ ä¸€å®šæ˜¯å¶å­ç»“ç‚¹ï¼Œäº¤æ¢åï¼Œ
+            å½“å‰ç»“ç‚¹å³ä¸ºå¶å­ç»“ç‚¹ï¼Œåˆ é™¤å‚è€ƒæ²¡æœ‰å­©å­çš„æƒ…å†µã€‚å¦ä¸€ç§æ–¹æ³•æ˜¯ï¼Œå½“å‰ç»“ç‚¹ä¸å³å­æ ‘ä¸­æœ€å°çš„å…ƒç´ äº¤æ¢ï¼Œç„¶ååˆ é™¤å½“å‰ç»“ç‚¹ã€‚
     * */
     public BSTnode remove(BSTnode root, int key){
         if (root == null)
             return null;
         BSTnode p = check_recur(root, key);
-        //´ıÉ¾³ı½ÚµãÊÇÒ¶×Ó½Úµã
+        //å¾…åˆ é™¤èŠ‚ç‚¹æ˜¯å¶å­èŠ‚ç‚¹
         if (p.getRight() == null && p.getLeft() == null){
             BSTnode parent = p.getParent();
             if (parent == null){
-                //¸ù½Úµã
+                //æ ¹èŠ‚ç‚¹
                 p=null;
             }else {
-                //Ò¶×Ó½Úµã
-                //ÏÈ´¦ÀíÆä¸¸½Úµã
+                //å¶å­èŠ‚ç‚¹
+                //å…ˆå¤„ç†å…¶çˆ¶èŠ‚ç‚¹
                 if (parent.getLeft() == p){
                     parent.setLeft(null);
                 }else {
                     parent.setRight(null);
                 }
-                //ÔÙ´¦ÀíÒ¶×Ó½Úµã
+                //å†å¤„ç†å¶å­èŠ‚ç‚¹
                 p =null;
             }
         }else if (p.getLeft() != null && p.getRight() == null){
-            //´ıÉ¾³ı½ÚµãÖ»ÓĞ×óº¢×Ó
+            //å¾…åˆ é™¤èŠ‚ç‚¹åªæœ‰å·¦å­©å­
             BSTnode parent = p.getParent();
             if (parent == null){
                 root = p.getLeft();
                 p=null;
             }else {
-                //Ò¶×Ó½Úµã
-                //ÏÈ´¦ÀíÆä¸¸½Úµã
+                //å¶å­èŠ‚ç‚¹
+                //å…ˆå¤„ç†å…¶çˆ¶èŠ‚ç‚¹
                 if (parent.getLeft() == p){
                     parent.setLeft(p.getLeft());
                 }else {
                     parent.setRight(p.getLeft());
                 }
-                //ÔÙ´¦ÀíÒ¶×Ó½Úµã
+                //å†å¤„ç†å¶å­èŠ‚ç‚¹
                 p =null;
             }
         }else if (p.getRight() != null && p.getLeft() == null){
-            //´ıÉ¾³ı½ÚµãÖ»ÓĞÓÒº¢×Ó
+            //å¾…åˆ é™¤èŠ‚ç‚¹åªæœ‰å³å­©å­
             BSTnode parent = p.getParent();
             if (parent == null){
                 root = p.getRight();
                 p=null;
             }else {
-                //Ò¶×Ó½Úµã
-                //ÏÈ´¦ÀíÆä¸¸½Úµã
+                //å¶å­èŠ‚ç‚¹
+                //å…ˆå¤„ç†å…¶çˆ¶èŠ‚ç‚¹
                 if (parent.getLeft() == p){
                     parent.setLeft(p.getRight());
                 }
-                //ÔÙ´¦ÀíÒ¶×Ó½Úµã
+                //å†å¤„ç†å¶å­èŠ‚ç‚¹
                 p =null;
             }
         }else {
-            //´ıÉ¾³ıµÄ½Úµã¼ÈÓĞ×óº¢×ÓÓÖÓĞÓÒº¢×Ó
-            //ÕÒµ½´øÉ¾³ı½ÚµãµÄºó¼Ì½Úµã£¬´Ëºó¼Ì½ÚµãÒ»¶¨Ã»ÓĞ×óº¢×Ó
+            //å¾…åˆ é™¤çš„èŠ‚ç‚¹æ—¢æœ‰å·¦å­©å­åˆæœ‰å³å­©å­
+            //æ‰¾åˆ°å¸¦åˆ é™¤èŠ‚ç‚¹çš„åç»§èŠ‚ç‚¹ï¼Œæ­¤åç»§èŠ‚ç‚¹ä¸€å®šæ²¡æœ‰å·¦å­©å­
             BSTnode postnode = postNode(p,key);
-            //ÓÃºó¼Ì½ÚµãÖµÖ±½Ó¸²¸ÇÒ²¿ÉÒÔ£¬Ö»²»¹ı½»»»ÒâÒå±È½ÏÃ÷È·
+            //ç”¨åç»§èŠ‚ç‚¹å€¼ç›´æ¥è¦†ç›–ä¹Ÿå¯ä»¥ï¼Œåªä¸è¿‡äº¤æ¢æ„ä¹‰æ¯”è¾ƒæ˜ç¡®
 //            p.setKey(postnode.getKey());
-            //½»»»ºó¼Ì½ÚµãºÍ´ıÉ¾³ı½ÚµãÖµ
+            //äº¤æ¢åç»§èŠ‚ç‚¹å’Œå¾…åˆ é™¤èŠ‚ç‚¹å€¼
             int value = p.getKey();p.setKey(postnode.getKey());postnode.setKey(value);
-            //É¾³ıºó¼Ì½ÚµãÎ»ÖÃµÄÖµ£¬¼´´ıÉ¾³ı½ÚµãµÄÖµ
+            //åˆ é™¤åç»§èŠ‚ç‚¹ä½ç½®çš„å€¼ï¼Œå³å¾…åˆ é™¤èŠ‚ç‚¹çš„å€¼
             if (postnode.getParent().getLeft() == postnode){
                 postnode.getParent().setLeft(postnode.getRight());
                 postnode=null;
@@ -352,35 +351,37 @@ public class BST {
     public static void main(String[] args){
         BST bst = new BST();
         BSTnode root = bst.insert_recur(null,26);
-        //²åÈë
-        root = bst.insert_unrecur(root,33);
-        root = bst.insert_unrecur(root,68);
-        root = bst.insert_unrecur(root,42);
-        root = bst.insert_unrecur(root,51);
-        root = bst.insert_recur(root,5);
-        root = bst.insert_recur(root,9);
-        root = bst.insert_recur(root,19);
-        root = bst.insert_recur(root,29);
-        root = bst.insert_recur(root,13);
+        //æ’å…¥
+        root = bst.insert_recur(root,33);
+        root = bst.insert_recur(root,68);
+        root = bst.insert_recur(root,42);
+        root = bst.insert_recur(root,51);
+        root = bst.insert_unrecur(root,5);
+        root = bst.insert_unrecur(root,9);
+        root = bst.insert_unrecur(root,19);
+        root = bst.insert_unrecur(root,29);
+        root = bst.insert_unrecur(root,13);
         bst.inOrder_recur(root);
         System.out.println("\n"+"------------------------------");
-        //²éÑ¯
+        //æŸ¥è¯¢
         BSTnode check = bst.check_recur(root,13);
-        System.out.println(check.getKey());
+        System.out.println(check == null ? null :check.getKey());
         check = bst.check_unrecur(root,51);
-        System.out.println(check.getKey());
+        System.out.println(check == null ? null :check.getKey());
+        check = bst.check_unrecur(root,52);
+        System.out.println(check == null ? null :check.getKey());
         System.out.println("\n"+"------------------------------");
-        //Êä³ö×î´ó×îĞ¡Öµ
+        //è¾“å‡ºæœ€å¤§æœ€å°å€¼
         System.out.println(bst.max_node_recur(root).getKey());
         System.out.println(bst.max_node_unrecur(root).getKey());
         System.out.println(bst.min_node_recur(root).getKey());
         System.out.println(bst.min_node_unrecur(root).getKey());
         System.out.println("\n"+"------------------------------");
-        //Êä³öÇ°Çı£¬ºó×º
+        //è¾“å‡ºå‰é©±ï¼Œåç¼€
         System.out.println(bst.preNode(root, 13).getKey());
         System.out.println(bst.postNode(root, 13).getKey());
         System.out.println("\n" + "------------------------------");
-        //É¾³ı
+        //åˆ é™¤
         bst.inOrder_recur(root);
         System.out.println("\n");
 
@@ -397,53 +398,52 @@ public class BST {
         System.out.println("\n");
     }
 
-}
+    /**
+     * BSTèŠ‚ç‚¹
+     */
+    static class BSTnode {
+        private int key;
+        private BSTnode left;
+        private BSTnode right;
+        private BSTnode parent;
 
-/**
- * BST½Úµã
- */
-class BSTnode {
-    private int key;
-    private BSTnode left;
-    private BSTnode right;
-    private BSTnode parent;
+        public BSTnode(int key, BSTnode parent) {
+            this.key = key;
+            left=null;
+            right=null;
+            this.parent=parent;
+        }
 
-    public BSTnode(int key, BSTnode parent) {
-        this.key = key;
-        left=null;
-        right=null;
-        this.parent=parent;
-    }
+        public int getKey() {
+            return key;
+        }
 
-    public int getKey() {
-        return key;
-    }
+        public void setKey(int key) {
+            this.key = key;
+        }
 
-    public void setKey(int key) {
-        this.key = key;
-    }
+        public BSTnode getLeft() {
+            return left;
+        }
 
-    public BSTnode getLeft() {
-        return left;
-    }
+        public void setLeft(BSTnode left) {
+            this.left = left;
+        }
 
-    public void setLeft(BSTnode left) {
-        this.left = left;
-    }
+        public BSTnode getRight() {
+            return right;
+        }
 
-    public BSTnode getRight() {
-        return right;
-    }
+        public void setRight(BSTnode right) {
+            this.right = right;
+        }
 
-    public void setRight(BSTnode right) {
-        this.right = right;
-    }
+        public BSTnode getParent() {
+            return parent;
+        }
 
-    public BSTnode getParent() {
-        return parent;
-    }
-
-    public void setParent(BSTnode parent) {
-        this.parent = parent;
+        public void setParent(BSTnode parent) {
+            this.parent = parent;
+        }
     }
 }
