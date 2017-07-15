@@ -3,61 +3,57 @@ package sort;
 import util.PrintArray;
 
 /**
- * ¹é²¢ÅÅĞò
- * Created by zhaoshiqiang on 2016/12/9.
+ * å½’å¹¶æ’åº
+ * Created by zhaoshiqiang on 2017/7/15.
  */
-public final class d_merge {
+public class d_merge {
+
     public static int[] merge_sort(int[] a){
-        recursive_mergesort(a, 1, a.length - 1);
+        recursive_mergesort(a,0,a.length-1);
         return a;
     }
 
     public static void recursive_mergesort(int[] a, int min, int max){
         if (min < max){
-            int mid = (min + max)/2;
-            //×ó±ß
-            recursive_mergesort(a, min, mid);
-            //ÓÒ±ß
-            recursive_mergesort(a, mid + 1, max);
-            //¹é²¢
+            int mid = (min + max) / 2;
+            //å·¦è¾¹
+            recursive_mergesort(a,min,mid);
+            //å³è¾¹
+            recursive_mergesort(a,mid+1,max);
+            //å½’å¹¶
             merge(a,min,mid,max);
         }
     }
+    public static void merge(int[] a, int min, int mid, int max){
+        int[] temp = new int[max - min + 1];
+        int i=0;
+        int p = min;    //å·¦æŒ‡é’ˆ
+        int q = mid+1;  //å³æŒ‡é’ˆ
 
-    public static void merge(int[] a,int min, int mid, int max){
-        int[] temp =new int[max-min+1];
-        int i=min;  //×óÖ¸Õë
-        int j=mid+1;    //ÓÒÖ¸Õë
-        int k=0;
-
-        //°Ñ½ÏĞ¡µÄÏÈÒÆµ½tempÖĞ
-        while (i<=mid && j<=max){
-            if (a[i]<a[j]){
-                temp[k++] = a[i++];
+        //æŠŠè¾ƒå°çš„å…ˆç§»åˆ°tempä¸­
+        while (p <= mid && q <= max){
+            if (a[p]<a[q]){
+                temp[i++] = a[p++];
             }else {
-                temp[k++] = a[j++];
+                temp[i++] = a[q++];
             }
         }
-        //°Ñ×ó±ßÊ£ÓàµÄÊı×éÒÆµ½tempÖĞ
-        while (i<=mid){
-            temp[k++] = a[i++];
+        //æŠŠå·¦è¾¹å‰©ä½™çš„æ•°ç»„ç§»åˆ°tempä¸­
+        while (p <= mid){
+            temp[i++] = a[p++];
         }
-        //°ÑÓÒ±ßÊ£ÓàµÄÊı×éÒÆµ½tempÖĞ
-        while (j<=max){
-            temp[k++] = a[j++];
+        //æŠŠå³è¾¹å‰©ä½™çš„æ•°ç»„ç§»åˆ°tempä¸­
+        while (q <= max){
+            temp[i++] = a[q++];
         }
-        //¸²¸ÇaÖĞ¶ÔÓ¦Î»ÖÃÊı¾İ
-        for (int p = 0 ; p<temp.length ;p++){
-            a[min+p]=temp[p];
+        //è¦†ç›–aä¸­å¯¹åº”ä½ç½®æ•°æ®
+        for (int j=0 ; j< temp.length ; j++){
+            a[j+min] = temp[j];
         }
-        System.out.println(min);
-        System.out.println(mid);
-        System.out.println(max);
-        PrintArray.printfArray(a);
-    }
 
+    }
     public static void main(String[] args){
-        int[] a = {0,5,2,6,9,7,1,3,4,8};
+        int[] a = {10,5,2,6,9,7,1,3,4,8};
         PrintArray.printfArray(merge_sort(a));
     }
 }
