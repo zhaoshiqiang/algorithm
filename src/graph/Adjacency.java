@@ -522,114 +522,116 @@ public class Adjacency {
         adjacency3.add_direct_unweight_Edge(8,9);
         adjacency3.Topological_sort();
     }
-}
 
-class adjNode {
-    private int adjvex;
-    private int weight;
-    //有权图
-    public adjNode(int adjvex, int weight) {
-        this.adjvex = adjvex;
-        this.weight = weight;
-    }
-    //无权图
-    public adjNode(int adjvex) {
-        this.adjvex = adjvex;
-        this.weight = 1;
-    }
+    class adjNode {
+        private int adjvex;
+        private int weight;
+        //有权图
+        public adjNode(int adjvex, int weight) {
+            this.adjvex = adjvex;
+            this.weight = weight;
+        }
+        //无权图
+        public adjNode(int adjvex) {
+            this.adjvex = adjvex;
+            this.weight = 1;
+        }
 
-    public int getAdjvex() {
-        return adjvex;
-    }
+        public int getAdjvex() {
+            return adjvex;
+        }
 
-    public void setAdjvex(int adjvex) {
-        this.adjvex = adjvex;
-    }
+        public void setAdjvex(int adjvex) {
+            this.adjvex = adjvex;
+        }
 
-    public int getWeight() {
-        return weight;
-    }
+        public int getWeight() {
+            return weight;
+        }
 
-    public void setWeight(int weight) {
-        this.weight = weight;
+        public void setWeight(int weight) {
+            this.weight = weight;
+        }
     }
-}
-//弧
-class Edge {
-    private Integer source;
-    private Integer aim;
-    private Integer weight;
+    //弧
+    class Edge {
+        private Integer source;
+        private Integer aim;
+        private Integer weight;
 
-    public Edge(Integer source, Integer aim, Integer weight) {
-        this.source = source;
-        this.aim = aim;
-        this.weight = weight;
-    }
+        public Edge(Integer source, Integer aim, Integer weight) {
+            this.source = source;
+            this.aim = aim;
+            this.weight = weight;
+        }
 
-    public Integer getWeight() {
-        return weight;
-    }
+        public Integer getWeight() {
+            return weight;
+        }
 
-    public Integer getSource() {
-        return source;
-    }
-
-    public Integer getAim() {
-        return aim;
-    }
-
-    public Integer getOtherSize(Integer vertex){
-        if (vertex == source){
-            return aim;
-        }else if (vertex == aim){
+        public Integer getSource() {
             return source;
-        }else {
-            return null;
+        }
+
+        public Integer getAim() {
+            return aim;
+        }
+
+        public Integer getOtherSize(Integer vertex){
+            if (vertex == source){
+                return aim;
+            }else if (vertex == aim){
+                return source;
+            }else {
+                return null;
+            }
         }
     }
-}
 
-class auxNode {
-    private Integer adjvex;
-    private Integer key;
-    private auxNode parent;
+    class auxNode {
+        private Integer adjvex;
+        private Integer key;
+        private auxNode parent;
 
-    public auxNode(Integer adjvex, Integer key, auxNode parent) {
-        this.adjvex = adjvex;
-        this.key = key;
-        this.parent = parent;
-    }
-
-    public Integer getAdjvex() {
-        return adjvex;
-    }
-
-    public void setAdjvex(Integer adjvex) {
-        this.adjvex = adjvex;
-    }
-
-    public Integer getKey() {
-        return key;
-    }
-
-    public void setKey(Integer key) {
-        this.key = key;
-    }
-
-    public auxNode getParent() {
-        return parent;
-    }
-
-    public void setParent(auxNode parent) {
-        this.parent = parent;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (obj instanceof auxNode){
-            return adjvex == ((auxNode) obj).getAdjvex();
+        public auxNode(Integer adjvex, Integer key, auxNode parent) {
+            this.adjvex = adjvex;
+            this.key = key;
+            this.parent = parent;
         }
-        return false;
+
+        public Integer getAdjvex() {
+            return adjvex;
+        }
+
+        public void setAdjvex(Integer adjvex) {
+            this.adjvex = adjvex;
+        }
+
+        public Integer getKey() {
+            return key;
+        }
+
+        public void setKey(Integer key) {
+            this.key = key;
+        }
+
+        public auxNode getParent() {
+            return parent;
+        }
+
+        public void setParent(auxNode parent) {
+            this.parent = parent;
+        }
+
+        @Override
+        public boolean equals(Object obj) {
+            if (obj instanceof auxNode){
+                return adjvex == ((auxNode) obj).getAdjvex();
+            }
+            return false;
+        }
+
+
     }
 
 }
