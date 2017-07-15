@@ -154,36 +154,38 @@ public class Adjacency {
     }
 
     /**
-     * 深度优先遍历
+     * 深度优先遍历，与之关联的数据结构为栈
      * @param v1 要遍历的节点
      * @param visited 已经访问过的节点列表
      */
     public void DFSTraval(Integer v1,List<Integer> visited){
-        if (visited.contains(v1))
+        if (visited.contains(v1)){
             return;
-        visited.add(v1);
+        }
         System.out.println("开始遍历节点： " + v1);
+        visited.add(v1);
         List<adjNode> adjNodes = adj.get(v1);
-        for (int i=0; i< adjNodes.size() ; i++){
+        for (int i=0; i<adjNodes.size(); i++){
             DFSTraval(adjNodes.get(i).getAdjvex(),visited);
         }
         System.out.println("结束遍历节点： " + v1);
     }
 
     /**
-     * 广度优先遍历
+     * 广度优先遍历，与之关联的数据结构为队列
      * @param v1 要遍历的节点
      * @param visited 已经访问过的节点列表
      */
     public void BFSTraval(Integer v1,List<Integer> visited){
         Queue<Integer> q = new LinkedList<Integer>();
         q.offer(v1);
-        while (!q.isEmpty()){
-            int v = q.poll();
-            if (!visited.contains(v)){
-                visited.add(v);
-                System.out.println("遍历节点： " + v);
-                List<adjNode> adjNodes = adj.get(v);
+        while ( !q.isEmpty() ){
+            int node = q.poll();
+            if ( !visited.contains(node) ){
+                System.out.println("遍历节点： " + node);
+                //遍历节点之后，一定要将其加入到visited中
+                visited.add(node);
+                List<adjNode> adjNodes = adj.get(node);
                 for (int i=0; i< adjNodes.size(); i++){
                     q.offer(adjNodes.get(i).getAdjvex());
                 }
@@ -192,7 +194,7 @@ public class Adjacency {
     }
 
     /**
-     * 拓扑排序说需要的深度优先遍历
+     * 拓扑排序所需要的深度优先遍历
      * @param stack 栈
      * @param visited 用于标记对应节点是否已经访问过来
      * @param node 访问的节点
@@ -468,6 +470,7 @@ public class Adjacency {
     }
 
     public static void main(String[] args){
+
         Adjacency adjacency1 = new Adjacency(9);
         adjacency1.add_Undirect_weight_Edge(1, 2, 4);
         adjacency1.add_Undirect_weight_Edge(1, 8, 8);
