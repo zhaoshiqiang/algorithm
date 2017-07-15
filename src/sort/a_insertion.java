@@ -3,22 +3,19 @@ package sort;
 import util.PrintArray;
 
 /**
- * ²åÈëÅÅĞò
- * Created by zhaoshiqiang on 2016/12/9.
+ * æ’å…¥æ’åº
+ * Created by zhaoshiqiang on 2017/7/15.
  */
-public final class a_insertion {
-
-
+public class a_insertion {
     public static int[] insertion_sort(int[] a){
-        int n = a.length;
-        for (int i=2; i < n; i++){
-            int j = i -1;
-            int k = a[i];
-            while ( j > 0 && a[j] > k){
-                a[j+1]=a[j];
+        for (int i = 1; i < a.length; i++) {
+            int j = i;
+            int temp = a[i];
+            while (j > 0 && temp < a[j-1]){
+                a[j] = a[j-1];
                 j--;
             }
-            a[j+1] = k;
+            a[j] = temp;
         }
         return a;
     }
