@@ -8,7 +8,7 @@ public final class PrintArray {
     public static void printfArray(int[] b){
 
         System.out.print("[");
-        for (int i = 1; i < b.length ; i++ ){
+        for (int i = 0; i < b.length ; i++ ){
             System.out.print(b[i]+"  ");
         }
         System.out.println("]");
