@@ -21,7 +21,7 @@ public class a_insertion {
     }
 
     public static void main(String[] args){
-        int[] a = {0,5,2,6,9,7,1,3,4,8};
+        int[] a = {10,5,2,6,9,7,1,3,4,8};
         PrintArray.printfArray(insertion_sort(a));
     }
 }
