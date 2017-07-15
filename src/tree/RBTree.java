@@ -602,71 +602,73 @@ public class RBTree {
         RBnode ltemp = x.getLeft();x.setLeft(y.getLeft());y.setLeft(ltemp);
         RBnode rtemp = x.getRight();x.setRight(y.getRight());y.setRight(rtemp);
     }
-}
 
-class RBnode{
-    public static final int RED = 0;
-    public static final int BLCAK = 1;
+    class RBnode{
+        public static final int RED = 0;
+        public static final int BLCAK = 1;
 
-    private int color;
-    private int key;
-    private RBnode parent;
-    private RBnode left;
-    private RBnode right;
+        private int color;
+        private int key;
+        private RBnode parent;
+        private RBnode left;
+        private RBnode right;
 
-    public RBnode(int color, int key, RBnode parent) {
-        this.color = color;
-        this.key = key;
-        this.parent = parent;
-        this.right = null;
-        this.left = null;
+        public RBnode(int color, int key, RBnode parent) {
+            this.color = color;
+            this.key = key;
+            this.parent = parent;
+            this.right = null;
+            this.left = null;
+        }
+
+        public RBnode(int color, int key) {
+            this.color = color;
+            this.key = key;
+            this.parent = null;
+            this.right = null;
+            this.left = null;
+        }
+
+        public int getColor() {
+            return color;
+        }
+
+        public void setColor(int color) {
+            this.color = color;
+        }
+
+        public int getKey() {
+            return key;
+        }
+
+        public void setKey(int key) {
+            this.key = key;
+        }
+
+        public RBnode getParent() {
+            return parent;
+        }
+
+        public void setParent(RBnode parent) {
+            this.parent = parent;
+        }
+
+        public RBnode getLeft() {
+            return left;
+        }
+
+        public void setLeft(RBnode left) {
+            this.left = left;
+        }
+
+        public RBnode getRight() {
+            return right;
+        }
+
+        public void setRight(RBnode right) {
+            this.right = right;
+        }
+
     }
 
-    public RBnode(int color, int key) {
-        this.color = color;
-        this.key = key;
-        this.parent = null;
-        this.right = null;
-        this.left = null;
-    }
-
-    public int getColor() {
-        return color;
-    }
-
-    public void setColor(int color) {
-        this.color = color;
-    }
-
-    public int getKey() {
-        return key;
-    }
-
-    public void setKey(int key) {
-        this.key = key;
-    }
-
-    public RBnode getParent() {
-        return parent;
-    }
-
-    public void setParent(RBnode parent) {
-        this.parent = parent;
-    }
-
-    public RBnode getLeft() {
-        return left;
-    }
-
-    public void setLeft(RBnode left) {
-        this.left = left;
-    }
-
-    public RBnode getRight() {
-        return right;
-    }
-
-    public void setRight(RBnode right) {
-        this.right = right;
-    }
 }
