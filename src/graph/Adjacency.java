@@ -155,6 +155,25 @@ public class Adjacency {
 
     /**
      * 深度优先遍历，与之关联的数据结构为栈
+     * 其基本代码框架为：
+     * <code>
+     * dfs(状态){
+     *     if (状态是目标状态){
+     *          ...
+     *          dosomething;
+     *          ...
+     *          return;
+     *     }else{
+     *         for (每一个新状态){
+     *             dfs(新状态);
+     *         }
+     *     }
+     * }
+     *
+     * main(){
+     *     dfs(初始状态);
+     * }
+     * <code/>
      * @param v1 要遍历的节点
      * @param visited 已经访问过的节点列表
      */
@@ -173,6 +192,24 @@ public class Adjacency {
 
     /**
      * 广度优先遍历，与之关联的数据结构为队列
+     * 其基本代码框架为：
+     * <code>
+     *  void bfs(初始状态)
+     *  {
+     *      初始化队列;
+     *      while(队列不为空 && 未找到目标节点){
+     *          取首节点;
+     *          domething;
+     *          扩展首节点;
+     *          将扩展出的节点插入队尾
+     *          (必要时记住每个节点的父节点)
+     *      }
+     *  }
+     * <code/>
+     *
+     * main(){
+     *     bfs(初始状态);
+     * }
      * @param v1 要遍历的节点
      * @param visited 已经访问过的节点列表
      */
