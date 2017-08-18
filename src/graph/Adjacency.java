@@ -164,7 +164,9 @@ public class Adjacency {
      *          ...
      *          return;
      *     }else{
+     *
      *         for (每一个新状态){
+     *              //这里要注意的是：这个状态原来没有遍历过，所以有些地方会加一个visited表
      *             dfs(新状态);
      *         }
      *     }
@@ -201,6 +203,7 @@ public class Adjacency {
      *          取首节点;
      *          domething;
      *          扩展首节点;
+     *          //这里要注意的是：这些节点原来没有遍历过，所以有些地方会加一个visited表
      *          将扩展出的节点插入队尾
      *          (必要时记住每个节点的父节点)
      *      }
