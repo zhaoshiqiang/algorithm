@@ -1,10 +1,5 @@
 package dynamic_programming;
 
-import util.PrintArray;
-
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * 钢条切割
  * Created by zhaoshiqiang on 2016/12/17.

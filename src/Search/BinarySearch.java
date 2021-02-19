@@ -37,20 +37,23 @@ public class BinarySearch {
      * @param endIndex
      * @return
      */
-    public static int binarySearch(int[] dataset,int data,int beginIndex,int endIndex){
-        int mid = (beginIndex + endIndex) / 2;
-        if (dataset[mid] == data){
-            return dataset[mid];
-        }else if (dataset[mid] > data){
-            return binarySearch(dataset,data,beginIndex,mid-1);
-        }else {
-            return binarySearch(dataset,data,mid+1,endIndex);
+    public static int binarySearch(int[] dataset, int data, int beginIndex, int endIndex) {
+        if (beginIndex < endIndex) {
+            int mid = (beginIndex + endIndex) / 2;
+            if (dataset[mid] == data) {
+                return mid;
+            } else if (dataset[mid] > data) {
+                return binarySearch(dataset, data, beginIndex, mid - 1);
+            } else {
+                return binarySearch(dataset, data, mid + 1, endIndex);
+            }
         }
+        return -1;
     }
 
     public static void main(String[] args) {
         int[] src = new int[] {1, 3, 5, 7, 8, 9};
         System.out.println(binarySearch(src, 3));
-        System.out.println(binarySearch(src,3,0,src.length-1));
+        System.out.println(binarySearch(src,4,0,src.length-1));
     }
 }
